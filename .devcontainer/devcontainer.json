@@ -1,0 +1,40 @@
+{
+	"name": "vite-project",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "..",
+		"args": {}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {}
+	},
+	"postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"dev.containers.copyGitConfig": true,
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "/usr/bin/zsh"
+					},
+				},
+			},
+			"extensions": [
+				"dotenv.dotenv-vscode",
+				"eamodio.gitlens",
+				"EditorConfig.EditorConfig"
+			]
+		}
+	},
+	"runArgs": [
+		"--gpus",
+		"all",
+		// "--ipc",
+		// "host",
+		"--ulimit",
+		"memlock=-1",
+		"--env-file",
+		".devcontainer/devcontainer.env"
+	],
+}
